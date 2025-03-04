@@ -4,7 +4,7 @@
 
 JANET_FN(cfun_MD5_Init,
     "(md5/init)",
-    "")
+    "Creates and initializes a new MD5 context.")
 {
     janet_fixarity(argc, 0);
     MD5_CTX *ctx = calloc(1, sizeof(MD5_CTX));
@@ -14,7 +14,7 @@ JANET_FN(cfun_MD5_Init,
 
 JANET_FN(cfun_MD5_Update,
     "(md5/update ctx bytes length)",
-    "")
+    "Adds the bytes in a Buffer to the MD5 context.")
 {
     janet_fixarity(argc, 2);
     MD5_CTX *ctx = janet_getpointer(argv, 0);
@@ -25,7 +25,8 @@ JANET_FN(cfun_MD5_Update,
 
 JANET_FN(cfun_MD5_Final,
     "(md5/final ctx)",
-    "")
+    "Gets the final MD5 result and returns a 16 byte Buffer. "
+    "The context is freed and cannot be reused for another MD5 operation.")
 {
     janet_fixarity(argc, 1);
     MD5_CTX *ctx = (MD5_CTX*)janet_getpointer(argv, 0);
